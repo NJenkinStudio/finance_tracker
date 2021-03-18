@@ -15,8 +15,9 @@
             <th scope="row"><%= friend.first_name %></th>
             <td><%= friend.last_name %></td>
             <td><%= friend.email %></td>
-            <td><%= link_to 'Stop Following', '#', method: :delete, data: {confirm: 'Are you sure thats a good idea?'}, 
-                                         class: "btn btn-outline-warning btn-sm" %></td>
+            <td><%= link_to 'Stop Following', friendship_path(friend), method: :delete, 
+                                      data: {confirm: 'Are you sure thats a good idea?'}, 
+                                      class: "btn btn-outline-warning btn-sm" %></td>
           </tr>
           <% end %>
       </tbody>

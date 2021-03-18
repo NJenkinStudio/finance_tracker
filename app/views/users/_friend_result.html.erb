@@ -11,11 +11,18 @@
             <td><strong>First Name: </strong> <%= friend.first_name %></td>
             <td><strong>Last Name: </strong> <%= friend.last_name %></td>
             <td><strong>Email: </strong> <%= friend.email %></td>
-            <td><strong>Profile: </strong> <%= link_to "View Profile", '#',
+            <td><strong>Options: </strong> <%= link_to "View Profile", '#',
                                 class: "btn btn-outline-secondary btn-sm" %>
-                <%= link_to "Follow Friend?", '#',
+              <% if current_user.not_friends_with?(friend.id) %>
+                <%= link_to "Follow Friend?", friendships_path(friend: friend),
                         class: "btn btn-outline-secondary text-warning btn-sm", 
-                        method: :post %></td>
+                        method: :post %>
+              <% else %>
+                <%= link_to 'Stop Following', friendship_path(friend), method: :delete, 
+                                      data: {confirm: 'Are you sure thats a good idea?'}, 
+                                      class: "btn btn-outline-secondary text-danger btn-sm" %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
